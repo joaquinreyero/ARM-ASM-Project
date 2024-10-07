@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  debian:
+    image: debian:latest
+    container_name: debian_dev
+    volumes:
+      - .:/custom-kernel
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+volumes:
+  custom-kernel:
