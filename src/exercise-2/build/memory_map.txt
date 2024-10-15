@@ -1,0 +1,36 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x0000000000000000 0x0000000000400000
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD build/main.o
+
+.text           0x0000000000000000    0x107e8
+ *(.text*)
+ .text          0x0000000000000000    0x107e8 build/main.o
+                0x00000000000100a0                inputRead
+                0x00000000000100a8                rectangle
+                0x0000000000010100                rainbowParty
+                0x00000000000101e0                app
+
+.iplt           0x00000000000107e8        0x0
+ .iplt          0x00000000000107e8        0x0 build/main.o
+
+.rela.dyn       0x00000000000107e8        0x0
+ .rela.iplt     0x00000000000107e8        0x0 build/main.o
+
+.data           0x00000000000107e8        0x0
+ .data          0x00000000000107e8        0x0 build/main.o
+
+.igot.plt       0x00000000000107e8        0x0
+ .igot.plt      0x00000000000107e8        0x0 build/main.o
+
+.bss            0x00000000000107e8        0x0
+ *(.bss*)
+ .bss           0x00000000000107e8        0x0 build/main.o
+OUTPUT(build/main.elf elf64-littleaarch64)
+LOAD linker stubs
