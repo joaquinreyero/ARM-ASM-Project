@@ -9,26 +9,28 @@ Linker script and memory map
 
 LOAD build/main.o
 
-.text           0x0000000000000000    0x100d8
+.text           0x0000000000000000    0x10150
  *(.text*)
- .text          0x0000000000000000    0x100d8 build/main.o
-                0x00000000000100a0                inputRead
-                0x00000000000100ac                app
+ .text          0x0000000000000000    0x10150 build/main.o
+                0x00000000000100a0                _app
+                0x00000000000100ac                _draw_rectangle
+                0x0000000000010100                _draw_bg
+                0x000000000001012c                _draw_robot
 
-.iplt           0x00000000000100d8        0x0
- .iplt          0x00000000000100d8        0x0 build/main.o
+.iplt           0x0000000000010150        0x0
+ .iplt          0x0000000000010150        0x0 build/main.o
 
-.rela.dyn       0x00000000000100d8        0x0
- .rela.iplt     0x00000000000100d8        0x0 build/main.o
+.rela.dyn       0x0000000000010150        0x0
+ .rela.iplt     0x0000000000010150        0x0 build/main.o
 
-.data           0x00000000000100d8        0x0
- .data          0x00000000000100d8        0x0 build/main.o
+.data           0x0000000000010150        0x0
+ .data          0x0000000000010150        0x0 build/main.o
 
-.igot.plt       0x00000000000100d8        0x0
- .igot.plt      0x00000000000100d8        0x0 build/main.o
+.igot.plt       0x0000000000010150        0x0
+ .igot.plt      0x0000000000010150        0x0 build/main.o
 
-.bss            0x00000000000100d8        0x0
+.bss            0x0000000000010150        0x0
  *(.bss*)
- .bss           0x00000000000100d8        0x0 build/main.o
+ .bss           0x0000000000010150        0x0 build/main.o
 OUTPUT(build/main.elf elf64-littleaarch64)
 LOAD linker stubs

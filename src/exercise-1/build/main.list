@@ -19,7 +19,7 @@ Disassembly of section .text:
       24:	34ffff40 	cbz	w0, c <FB_Init>
       28:	12007400 	and	w0, w0, #0x3fffffff
       2c:	b9000040 	str	w0, [x2]
-      30:	1400401f 	b	100ac <app>
+      30:	1400401c 	b	100a0 <_app>
 
 0000000000000034 <CoreLoop>:
       34:	14000000 	b	34 <CoreLoop>
@@ -16444,28 +16444,70 @@ Disassembly of section .text:
    10098:	0001007c 	.inst	0x0001007c ; undefined
    1009c:	00000000 	udf	#0
 
-00000000000100a0 <inputRead>:
-   100a0:	b9403696 	ldr	w22, [x20, #52]
-   100a4:	926f02d6 	and	x22, x22, #0x20000
-   100a8:	d61f03c0 	br	x30
+00000000000100a0 <_app>:
+   100a0:	94000018 	bl	10100 <_draw_bg>
+   100a4:	94000022 	bl	1012c <_draw_robot>
 
-00000000000100ac <app>:
-   100ac:	aa0003ea 	mov	x10, x0
-   100b0:	5280fc03 	mov	w3, #0x7e0                 	// #2016
+00000000000100a8 <InfLoop>:
+   100a8:	14000000 	b	100a8 <InfLoop>
 
-00000000000100b4 <clear_screen_y>:
-   100b4:	d2804002 	mov	x2, #0x200                 	// #512
+00000000000100ac <_draw_rectangle>:
+   100ac:	cb0300a9 	sub	x9, x5, x3
+   100b0:	cb0400ca 	sub	x10, x6, x4
+   100b4:	d280000c 	mov	x12, #0x0                   	// #0
+   100b8:	d377d884 	lsl	x4, x4, #9
 
-00000000000100b8 <clear_screen_x>:
-   100b8:	d2804001 	mov	x1, #0x200                 	// #512
+00000000000100bc <loop0>:
+   100bc:	eb0a019f 	cmp	x12, x10
+   100c0:	540001e0 	b.eq	100fc <end>  // b.none
+   100c4:	d280000b 	mov	x11, #0x0                   	// #0
 
-00000000000100bc <clear>:
-   100bc:	78000143 	sturh	w3, [x10]
-   100c0:	9100094a 	add	x10, x10, #0x2
-   100c4:	d1000421 	sub	x1, x1, #0x1
-   100c8:	b5ffffa1 	cbnz	x1, 100bc <clear>
-   100cc:	d1000442 	sub	x2, x2, #0x1
-   100d0:	b5ffff42 	cbnz	x2, 100b8 <clear_screen_x>
+00000000000100c8 <loop1>:
+   100c8:	eb09017f 	cmp	x11, x9
+   100cc:	54000061 	b.ne	100d8 <loop2>  // b.any
+   100d0:	9100058c 	add	x12, x12, #0x1
+   100d4:	17fffffa 	b	100bc <loop0>
 
-00000000000100d4 <InfLoop>:
-   100d4:	14000000 	b	100d4 <InfLoop>
+00000000000100d8 <loop2>:
+   100d8:	8b0b006d 	add	x13, x3, x11
+   100dc:	d377d98e 	lsl	x14, x12, #9
+   100e0:	8b0d01ce 	add	x14, x14, x13
+   100e4:	8b0401ce 	add	x14, x14, x4
+   100e8:	d37ff9ce 	lsl	x14, x14, #1
+   100ec:	8b0001ce 	add	x14, x14, x0
+   100f0:	780001c1 	sturh	w1, [x14]
+   100f4:	9100056b 	add	x11, x11, #0x1
+   100f8:	17fffff4 	b	100c8 <loop1>
+
+00000000000100fc <end>:
+   100fc:	d65f03c0 	ret
+
+0000000000010100 <_draw_bg>:
+   10100:	aa0003e3 	mov	x3, x0
+   10104:	d2804004 	mov	x4, #0x200                 	// #512
+   10108:	528003e1 	mov	w1, #0x1f                  	// #31
+
+000000000001010c <reset_x>:
+   1010c:	d2804005 	mov	x5, #0x200                 	// #512
+
+0000000000010110 <paint>:
+   10110:	78000061 	sturh	w1, [x3]
+   10114:	91000863 	add	x3, x3, #0x2
+   10118:	d10004a5 	sub	x5, x5, #0x1
+   1011c:	b5ffffa5 	cbnz	x5, 10110 <paint>
+   10120:	d1000484 	sub	x4, x4, #0x1
+   10124:	b5ffff44 	cbnz	x4, 1010c <reset_x>
+   10128:	d65f03c0 	ret
+
+000000000001012c <_draw_robot>:
+   1012c:	aa1e03fd 	mov	x29, x30
+   10130:	94000002 	bl	10138 <draw_face>
+   10134:	d61f03a0 	br	x29
+
+0000000000010138 <draw_face>:
+   10138:	d2801003 	mov	x3, #0x80                  	// #128
+   1013c:	d2801004 	mov	x4, #0x80                  	// #128
+   10140:	d2803005 	mov	x5, #0x180                 	// #384
+   10144:	d2803006 	mov	x6, #0x180                 	// #384
+   10148:	529f0001 	mov	w1, #0xf800                	// #63488
+   1014c:	17ffffd8 	b	100ac <_draw_rectangle>

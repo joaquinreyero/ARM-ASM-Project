@@ -15,8 +15,8 @@ clean :
 	rm -f build/*.img
 	rm -f build/memory_map.txt
 
-build/main.o : main.s
-	$(ARMGNU)-as $(AOPS) main.s gpio.s app.s -o build/main.o
+build/main.o : src/main.s
+	$(ARMGNU)-as $(AOPS) src/main.s src/app.s src/helpers/tools.s src/bg/bg.s src/robot/robot.s -o build/main.o
 
 build/kernel.img : memmap build/main.o
 	$(ARMGNU)-ld build/main.o -T memmap -o build/main.elf -M > build/memory_map.txt

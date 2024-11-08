@@ -44,7 +44,7 @@ FB_Init:
 	str w0,[x2] // Store Frame Buffer Pointer Physical Address
 
 	// Core 0 branch to app	
-	b app	
+	b _app	
 
 	// Infinite Loop For Core 1, 2 and 3	
 CoreLoop: 
