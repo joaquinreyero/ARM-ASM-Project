@@ -41,8 +41,36 @@ loopr0:
 	cmp x12,x6
 	b.ne loopr1	  	// Si no es la última fila, saltar
 	
-	 br x30 		//Vuelvo a la instruccion link
+	br x30 		//Vuelvo a la instruccion link
 	 
+playerdraw:
+	add x10, x0, 0		//X10 contiene la dirección base del framebuffer
+	mov x14,1024       	//registro usado solo para almacenar este número
+	mov x15,2          	//registro usado solo para almacenar este número
+	mul x17,x9,x14      //ajustando offset de pixeles en y para dibujar
+	mul x24,x8,x15     	//ajustando offset de pixeles en x para dibujar
+	add x17,x17,x24		//sumar ambos offset
+	add x10,x10,x17    	//ajusta el offset a X10
+	add x18,x8,0     	//contador inicio x
+	add x21,x8,0   		//contador secundario inicio x (cuenta como inicio para... x18)
+	add x19,x12,0   	//contador final x
+loopp0:  
+	sturh w3,[x10]	   	// Setear el color del pixel N
+	add x10,x10,2	   	// Siguiente pixel
+	add x18,x18,1	   	// Aumentar el contador X
+	cmp x18,x19 
+	b.ne loopp0			//Si no terminó la fila del jugador, volver a pintar
+	add x21,x21,1		//aumenta el inicio de x, para simular el triángulo
+	add x18,x21,0		//reinicia el contador x18
+	sub x16,x19,x21		//resta la diferencia entre el final x actual y el inicio x actual, guardándolo en x16 como temporal
+	sub x19,x19,1	 	// Disminuye el final de x, para simular el triángulo
+	mul x16,x16,x15		//multiplica por 2 para ajustar por pixeles
+	sub x16,x14,x16		//calcula la distancia al inicio de la próxima fila de la figura (en contador para pixeles)
+	add x10,x10,x16     //suma la distancia para dibujar correctamente
+	cmp x21,x19	  		//compara los contadores de x	
+	b.lt loopp0			//Si no es la última fila de triángulo, saltar
+
+	br x30	 
 	 
 rainbowParty:		
 	cmp x5, 1		//Pasa por las 6 funciones de color
