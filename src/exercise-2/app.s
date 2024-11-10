@@ -256,18 +256,18 @@
 
 	coleccionables:
 	mov w3, 0x07E0   	// 0x07E0 = verde
-	mov x8,24			// eje x del jugador estatico
-	mov x9,103          // eje y del jugador estatico
+	mov x8,25			// eje x del jugador estatico
+	mov x9,108          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl playerdraw
 	
-	mov x8,340			// eje x del jugador estatico
+	mov x8,320			// eje x del jugador estatico
 	mov x9,30           // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl playerdraw
 
-	mov x8,389			// eje x del jugador estatico
-	mov x9,322          // eje y del jugador estatico
+	mov x8,395			// eje x del jugador estatico
+	mov x9,329          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl playerdraw
 
