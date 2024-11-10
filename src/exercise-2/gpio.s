@@ -72,20 +72,13 @@ loopp0:
 
 	br x30	 
 	 
-rainbowParty:		
-	cmp x5, 1		//Pasa por las 6 funciones de color
+doscolores:		
+	cmp x5, 1		
 	beq bluemagenta
 	cmp x5, 2
-	beq magentared
-	cmp x5, 3
-	beq redyellow
-	cmp x5, 4
-	beq yellowgreen
-	cmp x5, 5
-	beq greenturquoise
-	cmp x5, 6
-	beq turquoiseblue
+	beq magentablue
 	b loop0
+
 bluemagenta:
 	add w11,w11,0x0800     // pasar de azul a magenta sumando bits de rojo
 	sub x6,x6,1        // resta segun va avanzando en el valor de rojo
@@ -94,45 +87,15 @@ bluemagenta:
 	mov x5,2        //cambiamos de funcion
 	mov x6,31       // restauramos el contador
 	b loop0
-magentared:
-	sub w11,w11,0x0001    // pasar de magenta a rojo restando bits de azul
-	sub x6,x6,1	// resta segun va avanzando en el valor de azul
-	cmp x6,xzr	      // para banderas de cero
-	bne loop0	      // 
-	mov x5,3        //cambiamos de funcion
-	mov x6,63       // restauramos el contador
-	b loop0
-redyellow:
-	add w11,w11,0x0020    // pasar de rojo a amarillo sumando bits de verde
-	sub x6,x6,1
-	cmp x6,xzr	      // para banderas de cero
-	bne loop0	      // 
-	mov x5,4        //cambiamos de funcion
-	mov x6,31       // restauramos el contador
-	b loop0
-yellowgreen:
-	sub w11,w11,0x0800    // pasar de amarillo a verde restando bits de rojo
-	sub x6,x6,1	// resta segun va avanzando en el valor de rojo
-	cmp x6,xzr	      // para banderas de cero
-	bne loop0	      // 
-	mov x5,5        //cambiamos de funcion
-	mov x6,31       // restauramos el contador
-	b loop0
-greenturquoise:
-	add w11,w11,0x0001    // pasar de verde a celeste sumando bits de azul
-	sub x6,x6,1		// resta segun va avanzando en el valor de azul
-	cmp x6,xzr	      // para banderas de cero
-	bne loop0	      // 
-	mov x5,6        //cambiamos de funcion
-	mov x6,63       // restauramos el contador
-	b loop0
-turquoiseblue:
-	sub w11,w11,0x0020    // pasar de celeste a azul restando bits de verde
-	sub x6,x6,1
-	cmp x6,xzr	      // para banderas de cero
-	bne loop0	      // 
-	mov x5,1        //cambiamos de funcion
-	mov x6,31       // restauramos el contador	
-	b loop0
+
+magentablue:
+    sub w11, w11, 0x0800     // pasar de magenta a azul restando bits de rojo
+    add x6, x6, 1            // incrementa según va avanzando en el valor de rojo
+    cmp x6, xzr              // para banderas de cero
+    bne loop0                // Si no terminó con el color pasa directamente a loop0
+    mov x5, 1                // cambiamos de funcion
+    mov x6, 31               // restauramos el contador
+    b loop0
+
 loop0:
 	br x30 		//Vuelvo a la instruccion link

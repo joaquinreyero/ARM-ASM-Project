@@ -115,6 +115,7 @@
 	mov x5,146
 	mov x6,156
 	mov x7,438
+	bl rectangle
 
 	//tercera fila
 	mov x4,73
@@ -167,7 +168,7 @@
 	bl rectangle
 
 	mov x4,292
-	mov x5,365
+	mov x5,292
 	mov x6,375
 	mov x7,365
 	bl rectangle
@@ -193,8 +194,8 @@
 
 	mov x4,365
 	mov x5,292
-	mov x6,365
-	mov x7,375
+	mov x6,202
+	mov x7,365
 	bl rectangle
 
 	mov x4,365
@@ -237,7 +238,7 @@
 	mov x4,365
 	mov x5,438
 	mov x6,448
-	mov x7,412
+	mov x7,512
 	bl rectangle
 	
 	//septima fila
@@ -250,17 +251,17 @@
 	//73,146,219,292,365,438,511
 	
 	mov x5, 1		// switch para rainbowparty
-	mov x6, 31		// contador para color para rainbowparty
-	mov x7, 1       // para funciones cortas, hace que el color dure más (para rainbowparty)
+	mov x6, 31		// contador para cambio de color
+	//mov x7, 1       // para funciones cortas, hace que el color dure más (para rainbowparty)
 
 	coleccionables:
-	mov w3, 0xffdf00   	// 0xffdf00 = amarillo
+	mov w3, 0x07E0   	// 0x07E0 = verde
 	mov x8,24			// eje x del jugador estatico
 	mov x9,103          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl playerdraw
 	
-	mov x8,316			// eje x del jugador estatico
+	mov x8,340			// eje x del jugador estatico
 	mov x9,30           // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl playerdraw
@@ -413,7 +414,7 @@
 	cmp w24,w19      	// comparar si el camino esta libre
 	b.eq redlight    	// si hay una pared de por medio, no moverse
 	cmp w19,0x001E  	// compara con bordes
-	b.eq redlight    	//s i hay una pared de por medio, no moverse
+	b.eq redlight    	// si hay una pared de por medio, no moverse
 	add x18,x18,1024    // avanza por el eje y
 	add x13,x13,1  		// aumenta el contador para avanzar por el eje y
 	cmp x13,x25
@@ -464,7 +465,7 @@
 	//b.eq refondo		// si lo es, avanzar a otro píxel
 	cmp w16, 0xF000		// comparar si el pixel es parte del fondo
 	b.eq refondo		// si lo es, avanzar a otro píxel
-	cmp w16, 0xffdf00	// compara si el pixwl es parte del coleccionable
+	cmp w16, 0x07E0	// compara si el pixwl es parte del coleccionable
 	b.eq refondo		// si lo es, avanza al otro pixel
 	cmp w16, 0x0001		// comparar si el pixel es parte del rastro dejado por el jugador
 	b.ne refondo0		// si no lo es, avanzar a otro píxel
@@ -487,7 +488,7 @@
 	add x2,x2,1	   		// Aumentar el contador Y
 	cmp x2,512
 	b.ne refondo2	 	// Si no es la última fila, saltar
-	bl rainbowParty
+	bl doscolores
 	// ------------------
 				
 	mov w22, 0x8
