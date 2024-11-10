@@ -1,6 +1,13 @@
 	.text
 	.org 0x0000
 
+	.equ COLOR_DARK_BROWN, 0x2965
+	.equ COLOR_MID_BROWN, 0x9C8E
+	.equ COLOR_BROWN, 0xD56E
+	.equ COLOR_WHITE, 0xFFFF
+	.equ COLOR_BLACK, 0x0000
+	.equ COLOR_RED, 0xCA85
+
 	// Setup Frame Buffer
 	.equ SCREEN_X, 512
 	.equ SCREEN_Y, 512
