@@ -105,7 +105,7 @@ figures:
 	bl rectangle
 	
 	//segunda fila
-	mov x4,73
+	mov x4,70
 	mov x5,73
 	mov x6,146
 	mov x7,86
@@ -118,7 +118,7 @@ figures:
 	bl rectangle
 
 	//tercera fila
-	mov x4,73
+	mov x4,70
 	mov x5,146
 	mov x6,219
 	mov x7,86
@@ -143,7 +143,7 @@ figures:
 	bl rectangle
 
 	//cuarta fila
-	mov x4,73
+	mov x4,70
 	mov x5,219
 	mov x6,292
 	mov x7,86
@@ -157,7 +157,7 @@ figures:
 	
 	mov x4,146
 	mov x5,292
-	mov x6,302
+	mov x6,304
 	mov x7,219
 	bl rectangle
 	
@@ -169,7 +169,7 @@ figures:
 
 	mov x4,292
 	mov x5,292
-	mov x6,302
+	mov x6,304
 	mov x7,365
 	bl rectangle
 
@@ -211,7 +211,7 @@ figures:
 	bl rectangle
 
 	//sexta fila
-	mov x4,73
+	mov x4,70
 	mov x5,365
 	mov x6,438
 	mov x7,86
