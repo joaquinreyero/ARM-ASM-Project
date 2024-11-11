@@ -105,6 +105,11 @@ collision:
 	
 	br x30
 
+redlight:
+	mov w22, 0x8
+	str w22, [x20, GPIO_GPCLR0] 	// leo X22 y lo guardo en el registro GPIO Pin clear 0
+	bl evento
+
 doscolores:		
 	cmp x5, 1		
 	beq bluemagenta

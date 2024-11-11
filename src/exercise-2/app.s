@@ -1,4 +1,5 @@
 	.globl app
+	.global evento
 	app:
 	//---------------- Inicialización GPIO --------------------
 
@@ -77,7 +78,6 @@
 	mov x5,73
 	mov x6,83
 	mov x7,73
-	//mov w8,0x001E
 	bl rectangle
 
 	mov x4,146
@@ -169,7 +169,7 @@
 
 	mov x4,292
 	mov x5,292
-	mov x6,375
+	mov x6,302
 	mov x7,365
 	bl rectangle
 
@@ -201,7 +201,7 @@
 	mov x4,365
 	mov x5,365
 	mov x6,375
-	mov x7,438
+	mov x7,448
 	bl rectangle
 	
 	mov x4,438
@@ -256,8 +256,8 @@
 
 	coleccionables:
 	mov w3, 0x07E0   	// 0x07E0 = verde
-	mov x8,25			// eje x del jugador estatico
-	mov x9,108          // eje y del jugador estatico
+	mov x8,20			// eje x del jugador estatico
+	mov x9,103          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl triangle
 	
@@ -277,6 +277,7 @@
 	mov x9,30           // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	add x25,x9,13		// final eje y del jugador
+
 	player:
 	bl inputRead
 	and w23,w22,#0x20000  	// filtrar solamente este valor de w22 y almacenarlo en w23 (descartando posibles bits activados)
@@ -295,14 +296,14 @@
 	b evento
 
 movab:
-	mov x19,x25
-	mov x26,x8
-	mov x23,14
+	mov x19,x25			// se guarda en un auxiliar el final del eje y del jugador
+	mov x26,x8			// se guarda en un auxiliar el eje x del jugador
+	mov x23,14			// se guarda en un auxiliar contador (segun el tamanio del triangulo)
 	bl gral
 abcollision:
-	mov x13,x8
-	mov x27,2
-	mov x28,x12
+	mov x13,x8			// se guarda en un auxiliar el eje x del jugador
+	mov x27,2			// se guarda en un auxiliar para posteriarmente moverse en el eje x
+	mov x28,x12			// se guarda en un auxiliar el final del eje x del jugador
 	bl collision
 
 	add x18,x18,1024 	// aumenta un eje y
@@ -317,14 +318,14 @@ abcollision:
 	b evento
 
 movarr:
-	mov x19,x9
-	mov x26,x8
-	mov x23,14
+	mov x19,x9			// se guarda en un auxiliar el eje y del jugador
+	mov x26,x8			// se guarda en un auxiliar el eje x del jugador
+	mov x23,14			// se guarda en un auxiliar contador (segun el tamanio del triangulo)
 	bl gral
 arrcollision:
-	mov x13,x8
-	mov x27,2
-	mov x28,x12
+	mov x13,x8			// se guarda en un auxiliar el eje x del jugador
+	mov x27,2			// se guarda en un auxiliar para posteriarmente moverse en el eje x
+	mov x28,x12			// se guarda en un auxiliar el final del eje x del jugador
 	bl collision
 
 	sub x18,x18,1024 	// aumenta un eje y
@@ -339,14 +340,14 @@ arrcollision:
 	b evento
 
 movder:
-	mov x19,x9
-	mov x26,x12
-	mov x23,28
+	mov x19,x9			// se guarda en un auxiliar el eje y del jugador
+	mov x26,x12			// se guarda en un auxiliar el final del eje x del jugador
+	mov x23,28			// se guarda en un auxiliar contador (segun el tamanio del triangulo)
 	bl gral
 dercollision:
-	mov x13,x9
-	mov x27,1024
-	mov x28,x25
+	mov x13,x9			// se guarda en un auxiliar el eje y del jugador
+	mov x27,1024		// se guarda en un auxiliar para posteriarmente moverse en el eje y
+	mov x28,x25			// se guarda en un auxiliar el final del eje y del jugador
 	bl collision
 
 	add x18,x18,2 		// aumenta un eje x
@@ -361,14 +362,14 @@ dercollision:
 	b evento
 
 movizq:
-	mov x19,x9
-	mov x26,x8
-	mov x23,28
+	mov x19,x9			// se guarda en un auxiliar el eje y del jugador
+	mov x26,x8			// se guarda en un auxiliar el eje x del jugador
+	mov x23,28			// se guarda en un auxiliar contador (segun el tamanio del triangulo)
 	bl gral
 izqcollision:
-	mov x13,x9
-	mov x29,1024
-	mov x28,x25
+	mov x13,x9			// se guarda en un auxiliar el eje y del jugador
+	mov x29,1024		// se guarda en un auxiliar para posteriarmente moverse en el eje y
+	mov x28,x25			// se guarda en un auxiliar el final del eje y del jugador
 	bl collision
 
 	sub x18,x18,2 		// aumenta un eje x
@@ -380,11 +381,11 @@ izqcollision:
 	sub x8,x8,30  		// mueve el eje x del jugador a la izquierda
 	sub x12,x12,30 		// mueve el eje x final del jugador a la izquierda
 	bl triangle	
-	b evento
+	//b evento
 	
-	redlight:
-	mov w22, 0x8
-	str w22, [x20, GPIO_GPCLR0] 	// leo X22 y lo guardo en el registro GPIO Pin clear 0
+	//redlight:
+	//mov w22, 0x8
+	//str w22, [x20, GPIO_GPCLR0] 	// leo X22 y lo guardo en el registro GPIO Pin clear 0
 	
 	evento:
 	//cmp x8,219		//verifica si esta en la porcion correcta del laberinto
@@ -415,8 +416,8 @@ izqcollision:
 	ldurh w16,[x10]		// tomar el color del pixel n
 	cmp w16, 0xF000		// comparar si el pixel es parte del fondo
 	b.eq refondo		// si lo es, avanzar a otro píxel
-	cmp w16, 0x07E0	// compara si el pixwl es parte del coleccionable
-	b.eq refondo		// si lo es, avanza al otro pixel
+	//cmp w16, 0x07E0		// compara si el pixwl es parte del coleccionable
+	//b.eq refondo		// si lo es, avanza al otro pixel
 	cmp w16, 0x0001		// comparar si el pixel es parte del rastro dejado por el jugador
 	b.ne refondo0		// si no lo es, avanzar a otro píxel
 	refondocheck:     
