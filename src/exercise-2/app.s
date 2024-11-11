@@ -249,25 +249,20 @@
 	bl rectangle
 	//x4, inicio x, x5: inicio y, x6: final y: x7, final x
 	//73,146,219,292,365,438,511
-	
-	mov x5, 1		// switch para rainbowparty
+
+	//registros para el fondo
+	mov x5, 1		// switch para el fondo
 	mov x6, 31		// contador para cambio de color
-	//mov x7, 1       // para funciones cortas, hace que el color dure más (para rainbowparty)
 
 	coleccionables:
 	mov w3, 0x07E0   	// 0x07E0 = verde
 	mov x8,20			// eje x del jugador estatico
-	mov x9,103          // eje y del jugador estatico
+	mov x9,120          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl triangle
 	
 	mov x8,320			// eje x del jugador estatico
 	mov x9,30           // eje y del jugador estatico
-	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
-	bl triangle
-
-	mov x8,395			// eje x del jugador estatico
-	mov x9,329          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl triangle
 
@@ -381,19 +376,8 @@ izqcollision:
 	sub x8,x8,30  		// mueve el eje x del jugador a la izquierda
 	sub x12,x12,30 		// mueve el eje x final del jugador a la izquierda
 	bl triangle	
-	//b evento
-	
-	//redlight:
-	//mov w22, 0x8
-	//str w22, [x20, GPIO_GPCLR0] 	// leo X22 y lo guardo en el registro GPIO Pin clear 0
 	
 	evento:
-	//cmp x8,219		//verifica si esta en la porcion correcta del laberinto
-	//b.lt verdeoff	// apaga el led verde si esta en el eje x inapropiado
-	//cmp x8,292		//verifica si esta en la porcion correcta eje x del laberinto
-	//b.gt verdeoff	// apaga el led verde si esta en el eje x inapropiado
-	//cmp x25,438		//verifica si esta en la porcion correcta del eje y del laberinto
-	//b.lt verdeoff	// apaga el led verde si esta en el eje y inapropiado
 	cmp x8, 438
 	b.lt verdeoff
 	cmp x25, 219
@@ -416,8 +400,6 @@ izqcollision:
 	ldurh w16,[x10]		// tomar el color del pixel n
 	cmp w16, 0xF000		// comparar si el pixel es parte del fondo
 	b.eq refondo		// si lo es, avanzar a otro píxel
-	//cmp w16, 0x07E0		// compara si el pixwl es parte del coleccionable
-	//b.eq refondo		// si lo es, avanza al otro pixel
 	cmp w16, 0x0001		// comparar si el pixel es parte del rastro dejado por el jugador
 	b.ne refondo0		// si no lo es, avanzar a otro píxel
 	refondocheck:     
@@ -447,43 +429,5 @@ izqcollision:
 	
 	b player    //vuelve a dibujar el jugador solamente
 		
-		
 	infloop:
 	b infloop
-//----definicion de registros----//
-//x0: direccion base de framebuffer (no borrar)
-//x1: tamanio en y de la pantalla
-//x2: tamanio en x de la pantalla
-//w3: donde va el color que se envia al framebuffer
-//x4: En rectangulo, inicio x de la figura. Inusado fuera de eso 
-//x5: En rectangulo, inicio y de la figura. en rainbowparty luego
-//x6: En rectangulo, final y de la figura. en rainbowparty luego
-//x7: En rectangulo, final x de la figura. en rainbowparty luego
-//x8: auxiliar para rectangulo, eje x del jugador despues
-//x9: auxiliar para rectangulo, eje y del jugador despues
-//x10: direccion base del framebuffer MAS el offset en pixeles
-//x11: auxiliar color rainbowparty
-//x12: auxiliar para rectangulo y despues final x del jugador
-//x13: auxiliar para rectangulo y despues para jugador
-//x14: auxiliar para rectangulo y despues para jugador (almacena un numero)
-//x15: auxiliar para rectangulo y despues para jugador (almacena un numero)
-//w16: usado para el refondo, donde se carga el valor del color en un pixel (auxiliar de lo contrario)
-//x17: auxiliar para jugador y de color
-//x18: auxiliar de color y jugador
-//x19: auxiliar de color y jugador
-//w20: direccion de GPIO, no borrar
-//x21: para GPIO al inicio, auxiliar despues
-//x22: para GPIO exclusivamente
-//x23: auxiliar para GPIO y colisiones
-//x24: auxiliar
-//x25: auxiilar eje Y final del jugador (cuantos son...)
-//x26:
-//x27:
-//x28:
-//x29:
-//x30: para link, no borrar
-
-//GPIO14=arriba, GPIO17=abajo, GPIO18=izquierda, GPIO15=derecha
-//led rojo=GPIO3, led verde=GPIO2
-//-----//
-
