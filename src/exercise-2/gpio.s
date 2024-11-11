@@ -5,7 +5,16 @@
     .global rectangle
 	//descripcion: dibujar un rectangulo en la pantalla dadas las coordenadas en x4,x5,x6 y x7.
 	
-	.global rainbowParty
+	.global triangle
+	//descripcion: dibuja un triangulo en la pantalla dadas cordenadas en x8,x9 y x12
+	
+	.global gral
+	//descripcion: determina el calculo de la direccion del framebuffer
+	
+	.global collision
+	//descripcion: determina si el jugador se puede mover
+	
+	.global doscolores
 	//descripcion: en una idea similar al ejercicio 1, configura el color que el fondo obtendra.
 //------FIN DEFINICION DE FUNCIONES-------//
 
@@ -43,7 +52,7 @@ loopr0:
 	
 	br x30 		//Vuelvo a la instruccion link
 	 
-playerdraw:
+triangle:
 	add x10, x0, 0		//X10 contiene la dirección base del framebuffer
 	mov x14,1024       	//registro usado solo para almacenar este número
 	mov x15,2          	//registro usado solo para almacenar este número
@@ -71,7 +80,31 @@ loopp0:
 	b.lt loopp0			//Si no es la última fila de triángulo, saltar
 
 	br x30	 
-	 
+
+gral:
+	add x18,x0,0	    // x18 contiene la dirección base del framebuffer
+	mov x14,1024       	// registro usado solo para almacenar este número
+	mov x15,2          	// registro usado solo para almacenar este número
+
+	mul x17,x19,x14     // ajustando offset de pixeles en y para dibujar
+	mul x24,x26,x15    	// ajustando offset de pixeles en x para dibujar
+	add x17,x17,x24		// sumar ambos offset
+	add x18,x18,x17    	// ajusta el offset a X18
+	mov w24,#0xF000  	// guardar el valor de las paredes en w24 (deshaciendose del valor anterior)
+	
+	br x30
+
+collision:
+	ldurh w19,[x18]  	// toma el valor del color en la direccion a la que se va a mover (deshaciendose del valor anterior)
+	cmp w24,w19      	// comparar si el camino esta libre
+	b.eq redlight    	// si hay una pared de por medio, no moverse
+	add x18,x18,x27    	// avanza por el eje x
+	add x13,x13,1  		// aumenta el contador para avanzar por el eje x
+	cmp x13,x28
+	b.lt collision    	// si no termino de barrer todo, vuelve
+	
+	br x30
+
 doscolores:		
 	cmp x5, 1		
 	beq bluemagenta
@@ -89,12 +122,12 @@ bluemagenta:
 	b loop0
 
 magentablue:
-    sub w11, w11, 0x0800     // pasar de magenta a azul restando bits de rojo
-    add x6, x6, 1            // incrementa según va avanzando en el valor de rojo
-    cmp x6, xzr              // para banderas de cero
+    sub w11,w11,0x0800     // pasar de magenta a azul restando bits de rojo
+    sub x6,x6,1            // incrementa según va avanzando en el valor de rojo
+    cmp x6,xzr              // para banderas de cero
     bne loop0                // Si no terminó con el color pasa directamente a loop0
-    mov x5, 1                // cambiamos de funcion
-    mov x6, 31               // restauramos el contador
+    mov x5,1                // cambiamos de funcion
+    mov x6,31               // restauramos el contador
     b loop0
 
 loop0:

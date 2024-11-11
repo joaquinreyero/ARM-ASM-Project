@@ -194,8 +194,8 @@
 
 	mov x4,365
 	mov x5,292
-	mov x6,202
-	mov x7,365
+	mov x6,365
+	mov x7,375
 	bl rectangle
 
 	mov x4,365
@@ -259,17 +259,17 @@
 	mov x8,25			// eje x del jugador estatico
 	mov x9,108          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
-	bl playerdraw
+	bl triangle
 	
 	mov x8,320			// eje x del jugador estatico
 	mov x9,30           // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
-	bl playerdraw
+	bl triangle
 
 	mov x8,395			// eje x del jugador estatico
 	mov x9,329          // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
-	bl playerdraw
+	bl triangle
 
 	player1:
 	mov w3, 0x0001   	// 0x0001 = Negro con lo justo para distinguirlo de 0
@@ -291,143 +291,95 @@
 	and w23,w22,#0x8000  	// filtrar solamente este valor de w22 y almacenarlo en w23 (descartando posibles bits activados)
 	cmp w23,#0x8000   		// Esta el boton de derecha (GPIO15) siendo presionado?
 	b.eq movizq
-	bl playerdraw      		//Si ninguno esta presionado no hay movimiento, a esperar
+	bl triangle      		//Si ninguno esta presionado no hay movimiento, a esperar
 	b evento
 
-	movab:
-	add x18,x0,0	    // x18 contiene la dirección base del framebuffer
-	mov x14,1024       	// registro usado solo para almacenar este número
-	mov x15,2          	// registro usado solo para almacenar este número
-	add x19,x25,0	    // guardando en x19 la direccion a la que se quiere ir... porque no se puede aplicar el offset normalmente
-	mul x17,x19,x14     // ajustando offset de pixeles en y para dibujar
-	mul x24,x8,x15    	// ajustando offset de pixeles en x para dibujar
-	add x17,x17,x24		// sumar ambos offset
-	add x18,x18,x17    	// ajusta el offset a X18
-	mov x23,14        	// contador (segun el tamanio del triangulo)
-	mov w24,#0xF000  	// guardar el valor de las paredes en w24 (deshaciendose del valor anterior)
-	abcheck1:
-	mov x13,x8  	//contador para barrer en el eje x
-	abcheck:
-	ldurh w19,[x18]  	// toma el valor del color en la direccion a la que se va a mover (deshaciendose del valor anterior)
-	cmp w24,w19      	// comparar si el camino esta libre
-	b.eq redlight    	// si hay una pared de por medio, no moverse
-	//cmp w19,0x001E   	// compara con bordes
-	//b.eq redlight    	// si hay una pared de por medio, no moverse
-	add x18,x18,2    	// avanza por el eje x
-	add x13,x13,1  		// aumenta el contador para avanzar por el eje x
-	cmp x13,x12
-	b.lt abcheck    	// si no termino de barrer todo, vuelve
+movab:
+	mov x19,x25
+	mov x26,x8
+	mov x23,14
+	bl gral
+abcollision:
+	mov x13,x8
+	mov x27,2
+	mov x28,x12
+	bl collision
+
 	add x18,x18,1024 	// aumenta un eje y
 	sub x13,x12,x8 		// diferencia entre x
 	mul x13,x13,x15   	// offset calculado
 	sub x18,x18,x13   	// offset disminuido
 	sub x23,x23,1   	// disminuye el contador
-	cbnz x23, abcheck1  // si no termino de revisar colisiones, vuelve a revisar
+	cbnz x23, abcollision  // si no termino de revisar colisiones, vuelve a revisar
 	add x9,x9,15  		// mueve el eje y del jugador abajo (la mitad del eje x)
 	add x25,x25,15  	// mueve el eje y del jugador arriba  (la mitad del eje x)
-	bl playerdraw
+	bl triangle
 	b evento
-	
-	movarr:
-	add x18,x0,0	    // x18 contiene la dirección base del framebuffer
-	mov x14,1024       	// registro usado solo para almacenar este número
-	mov x15,2          	// registro usado solo para almacenar este número
-	sub x19,x9,0    	// guardando en x19 la direccion a la que se quiere ir... porque no se puede aplicar el offset normalmente
-	mul x17,x19,x14     // ajustando offset de pixeles en y para dibujar
-	mul x24,x8,x15     	// ajustando offset de pixeles en x para dibujar
-	add x17,x17,x24		// sumar ambos offset
-	add x18,x18,x17    	// ajusta el offset a X18
-	mov x23,14         	// contador  (segun el tamanio del triangulo)
-	mov w24,#0xF000  	// guardar el valor de las paredes en w24 (deshaciendose del valor anterior)
-	arrcheck1:
-	mov x13,x8  	// contador para barrer en el eje x
-	arrcheck:
-	ldurh w19,[x18]  	// toma el valor del color en la direccion a la que se va a mover (deshaciendose del valor anterior)
-	cmp w24,w19      	// comparar si el camino esta libre
-	b.eq redlight    	// si hay una pared de por medio, no moverse
-	cmp w19,0x001E   	// compara con bordes
-	b.eq redlight    	// si hay una pared de por medio, no moverse
-	add x18,x18,2    	// avanza por el eje x
-	add x13,x13,1  		// aumenta el contador para avanzar por el eje x
-	cmp x13,x12
-	b.lt arrcheck    	// si no termino de barrer todo, vuelve
+
+movarr:
+	mov x19,x9
+	mov x26,x8
+	mov x23,14
+	bl gral
+arrcollision:
+	mov x13,x8
+	mov x27,2
+	mov x28,x12
+	bl collision
+
 	sub x18,x18,1024 	// aumenta un eje y
 	sub x13,x12,x8 		// diferencia entre x
 	mul x13,x13,x15   	// offset calculado
 	sub x18,x18,x13   	// offset disminuido
 	sub x23,x23,1   	// disminuye el contador
-	cbnz x23, arrcheck1 // si no termino de revisar colisiones, vuelve a revisar
+	cbnz x23, arrcollision // si no termino de revisar colisiones, vuelve a revisar
 	sub x9,x9,15  		// mueve el eje y del jugador arriba  (la mitad del eje x)
 	sub x25,x25,15  	// mueve el eje y del jugador arriba  (la mitad del eje x)
-	bl playerdraw
+	bl triangle
 	b evento
-	
-	movder:
-	add x18,x0,0	    // x18 contiene la dirección base del framebuffer
-	mov x14,1024       	// registro usado solo para almacenar este número
-	mov x15,2          	// registro usado solo para almacenar este número
-	sub x19,x9,0    	// guardando en x19 la direccion a la que se quiere ir... porque no se puede aplicar el offset normalmente
-	mul x17,x19,x14     // ajustando offset de pixeles en y para dibujar
-	mul x24,x12,x15     // ajustando offset de pixeles en x para dibujar
-	add x17,x17,x24		// sumar ambos offset
-	add x18,x18,x17    	// ajusta el offset a X18
-	mov x23,28         	// contador  (segun el tamanio del triangulo)
-	mov w24,#0xF000  	// guardar el valor de las paredes en w24 (deshaciendose del valor anterior)
-	dercheck1:
-	mov x13,x9  	// contador para barrer en el eje y
-	dercheck:
-	ldurh w19,[x18]  	// toma el valor del color en la direccion a la que se va a mover (deshaciendose del valor anterior)
-	cmp w24,w19      	// comparar si el camino esta libre
-	b.eq redlight    	// si hay una pared de por medio, no moverse
-	cmp w19,0x001E   	// compara con bordes
-	b.eq redlight    	// si hay una pared de por medio, no moverse
-	add x18,x18,1024    // avanza por el eje y
-	add x13,x13,1  		// aumenta el contador para avanzar por el eje y
-	cmp x13,x25
-	b.lt dercheck    	// si no termino de barrer todo, vuelve
+
+movder:
+	mov x19,x9
+	mov x26,x12
+	mov x23,28
+	bl gral
+dercollision:
+	mov x13,x9
+	mov x27,1024
+	mov x28,x25
+	bl collision
+
 	add x18,x18,2 		// aumenta un eje x
 	sub x13,x25,x9 		// diferencia entre y
 	mul x13,x13,x14   	// offset calculado
 	sub x18,x18,x13   	// offset disminuido
 	sub x23,x23,1   	// disminuye el contador
-	cbnz x23, dercheck1 // si no termino de revisar colisiones, vuelve a revisar
+	cbnz x23, dercollision // si no termino de revisar colisiones, vuelve a revisar
 	add x8,x8,30  		// mueve el eje x del jugador a la derecha
 	add x12,x12,30 		// mueve el eje x final del jugador a la izquierda
-	bl playerdraw
+	bl triangle
 	b evento
 
-	movizq:
-	add x18,x0,0	    // x18 contiene la dirección base del framebuffer
-	mov x14,1024       	// registro usado solo para almacenar este número
-	mov x15,2          	// registro usado solo para almacenar este número
-	sub x19,x9,0    	// guardando en x19 la direccion a la que se quiere ir... porque no se puede aplicar el offset normalmente
-	mul x17,x19,x14    	// ajustando offset de pixeles en y para dibujar
-	mul x24,x8,x15     	// ajustando offset de pixeles en x para dibujar
-	add x17,x17,x24		// sumar ambos offset
-	add x18,x18,x17    	// ajusta el offset a X18
-	mov x23,28         	// contador  (segun el tamanio del triangulo)
-	mov w24,#0xF000  	// guardar el valor de las paredes en w24 (deshaciendose del valor anterior)
-	izqcheck1:
-	mov x13,x9  	//contador para barrer en el eje y
-	izqcheck:
-	ldurh w19,[x18]  	// toma el valor del color en la direccion a la que se va a mover (deshaciendose del valor anterior)
-	cmp w24,w19      	// comparar si el camino esta libre
-	b.eq redlight    	// si hay una pared de por medio, no moverse
-	cmp w19,0x001E  	// compara con bordes
-	b.eq redlight    	// si hay una pared de por medio, no moverse
-	add x18,x18,1024    // avanza por el eje y
-	add x13,x13,1  		// aumenta el contador para avanzar por el eje y
-	cmp x13,x25
-	b.lt izqcheck    	// si no termino de barrer todo, vuelve
+movizq:
+	mov x19,x9
+	mov x26,x8
+	mov x23,28
+	bl gral
+izqcollision:
+	mov x13,x9
+	mov x29,1024
+	mov x28,x25
+	bl collision
+
 	sub x18,x18,2 		// aumenta un eje x
 	sub x13,x25,x9 		// diferencia entre y
 	mul x13,x13,x14   	// offset calculado
 	sub x18,x18,x13   	// offset disminuido
 	sub x23,x23,1   	// disminuye el contador
-	cbnz x23, izqcheck1 // si no termino de revisar colisiones, vuelve a revisar
+	cbnz x23, izqcollision // si no termino de revisar colisiones, vuelve a revisar
 	sub x8,x8,30  		// mueve el eje x del jugador a la izquierda
 	sub x12,x12,30 		// mueve el eje x final del jugador a la izquierda
-	bl playerdraw	
+	bl triangle	
 	b evento
 	
 	redlight:
@@ -461,8 +413,6 @@
 	mov x1,0         	// Condator en X, debe llegar a 512
 	refondo1:
 	ldurh w16,[x10]		// tomar el color del pixel n
-	//cmp w16, 0x001E	// comparar si el pixel es parte del fondo
-	//b.eq refondo		// si lo es, avanzar a otro píxel
 	cmp w16, 0xF000		// comparar si el pixel es parte del fondo
 	b.eq refondo		// si lo es, avanzar a otro píxel
 	cmp w16, 0x07E0	// compara si el pixwl es parte del coleccionable
