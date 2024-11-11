@@ -163,7 +163,7 @@
 	
 	mov x4,292
 	mov x5,219
-	mov x6,365
+	mov x6,292
 	mov x7,302
 	bl rectangle
 
@@ -368,7 +368,7 @@ movizq:
 	bl gral
 izqcollision:
 	mov x13,x9			// se guarda en un auxiliar el eje y del jugador
-	mov x29,1024		// se guarda en un auxiliar para posteriarmente moverse en el eje y
+	mov x27,1024		// se guarda en un auxiliar para posteriarmente moverse en el eje y
 	mov x28,x25			// se guarda en un auxiliar el final del eje y del jugador
 	bl collision
 
