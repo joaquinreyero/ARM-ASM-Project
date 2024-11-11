@@ -51,6 +51,7 @@ loopr0:
 	b.ne loopr1	  	// Si no es la última fila, saltar
 	
 	br x30 		//Vuelvo a la instruccion link
+
 	 
 triangle:
 	add x10, x0, 0		//X10 contiene la dirección base del framebuffer
@@ -81,6 +82,7 @@ loopp0:
 
 	br x30	 
 
+
 gral:
 	add x18,x0,0	    // x18 contiene la dirección base del framebuffer
 	mov x14,1024       	// registro usado solo para almacenar este número
@@ -93,6 +95,7 @@ gral:
 	mov w24,#0xF000  	// guardar el valor de las paredes en w24 (deshaciendose del valor anterior)
 	
 	br x30
+
 
 collision:
 	ldurh w19,[x18]  	// toma el valor del color en la direccion a la que se va a mover (deshaciendose del valor anterior)
@@ -109,6 +112,7 @@ redlight:
 	mov w22, 0x8
 	str w22, [x20, GPIO_GPCLR0] 	// leo X22 y lo guardo en el registro GPIO Pin clear 0
 	bl evento
+
 
 doscolores:		
 	cmp x5, 1		

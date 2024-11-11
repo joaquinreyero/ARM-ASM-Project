@@ -1,6 +1,6 @@
 	.globl app
 	.global evento
-	app:
+app:
 	//---------------- Inicialización GPIO --------------------
 
 	mov w20, PERIPHERAL_BASE + GPIO_BASE     // Dirección de los GPIO.		
@@ -32,9 +32,9 @@
 	sub x2,x2,1	   		// Decrementar el contador Y
 	cbnz x2,setupfondo1	// Si no es la última fila, saltar
 
-	figures:
+figures:
 	//paredes externas
-	//x4: inicio x, x5: inicio y, x6: final y: x7, final x
+	//73,146,219,292,365,438,511
 	mov x4,0		//se inicializa x
 	mov x5,0		//se inicializa y
 	mov x6,10		//se finaliza y
@@ -108,7 +108,7 @@
 	mov x4,73
 	mov x5,73
 	mov x6,146
-	mov x7,83
+	mov x7,86
 	bl rectangle
 	
 	mov x4,146
@@ -121,7 +121,7 @@
 	mov x4,73
 	mov x5,146
 	mov x6,219
-	mov x7,83
+	mov x7,86
 	bl rectangle
 	
 	mov x4,146
@@ -146,7 +146,7 @@
 	mov x4,73
 	mov x5,219
 	mov x6,292
-	mov x7,83
+	mov x7,86
 	bl rectangle
 	
 	mov x4,146
@@ -214,7 +214,7 @@
 	mov x4,73
 	mov x5,365
 	mov x6,438
-	mov x7,83
+	mov x7,86
 	bl rectangle
 	
 	mov x4,146
@@ -247,14 +247,12 @@
 	mov x6,512
 	mov x7,302
 	bl rectangle
-	//x4, inicio x, x5: inicio y, x6: final y: x7, final x
-	//73,146,219,292,365,438,511
 
 	//registros para el fondo
 	mov x5, 1		// switch para el fondo
 	mov x6, 31		// contador para cambio de color
 
-	coleccionables:
+coleccionables:
 	mov w3, 0x07E0   	// 0x07E0 = verde
 	mov x8,20			// eje x del jugador estatico
 	mov x9,120          // eje y del jugador estatico
@@ -266,14 +264,14 @@
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	bl triangle
 
-	player1:
-	mov w3, 0x0001   	// 0x0001 = Negro con lo justo para distinguirlo de 0
+player1:
+	mov w3, 0x0001   	// 0x0001 = Negro
 	mov x8,170			// eje x del jugador estatico
 	mov x9,30           // eje y del jugador estatico
 	add x12,x8,25       // final del eje x del jugador determina el TAMANIO
 	add x25,x9,13		// final eje y del jugador
 
-	player:
+player:
 	bl inputRead
 	and w23,w22,#0x20000  	// filtrar solamente este valor de w22 y almacenarlo en w23 (descartando posibles bits activados)
 	cmp w23,#0x20000   		// ¿Esta el boton de abajo (GPIO17) siendo presionado?
@@ -377,7 +375,7 @@ izqcollision:
 	sub x12,x12,30 		// mueve el eje x final del jugador a la izquierda
 	bl triangle	
 	
-	evento:
+evento:
 	cmp x8, 438
 	b.lt verdeoff
 	cmp x25, 219
@@ -391,36 +389,38 @@ izqcollision:
 	mov w22, 0x4
 	str w22, [x20, GPIO_GPSET0] 	// leo X22 y lo guardo en el registro GPIO Pin output set 0, apagando el led verde
 
-	delay1: 
+delay1: 
 	mov x2,0         	// Contador en Y, debe llegar a 512
 	add x10,x0,0	    // x10 contiene la dirección base del framebuffer
-	refondo2:
+	fondo2:
 	mov x1,0         	// Condator en X, debe llegar a 512
-	refondo1:
+fondo1:
 	ldurh w16,[x10]		// tomar el color del pixel n
 	cmp w16, 0xF000		// comparar si el pixel es parte del fondo
-	b.eq refondo		// si lo es, avanzar a otro píxel
+	b.eq fondo			// si lo es, avanzar a otro píxel
+	cmp w16, 0x07E0		// compara si el pixel es parte del coleccionable
+	b.eq fondo			// si lo es, avanza al otro pixel
 	cmp w16, 0x0001		// comparar si el pixel es parte del rastro dejado por el jugador
-	b.ne refondo0		// si no lo es, avanzar a otro píxel
-	refondocheck:     
+	b.ne fondo0			// si no lo es, avanzar a otro píxel
+	fondocheck:     
 	cmp x1,x8			// verifica si esta en el mismo eje x que el jugador
-	b.lt refondo0		// va al pintado de pixeles si esta antes que el jugador
+	b.lt fondo0			// va al pintado de pixeles si esta antes que el jugador
 	cmp x1,x12			// verifica si esta en el mismo eje x que el jugador
-	b.gt refondo0		// va al pintado de pixeles si esta despues que el jugador
+	b.gt fondo0			// va al pintado de pixeles si esta despues que el jugador
 	cmp x2,x9 			// verifica si esta en el mismo eje y que el jugador
-	b.lt refondo0		// va al pintado de pixeles si esta antes que el jugador
+	b.lt fondo0			// va al pintado de pixeles si esta antes que el jugador
 	cmp x2,x25 			// verifica si esta en el mismo eje y que el jugador
-	b.lt refondo		// Saltea el pintado de pixeles si esta, finalmente, dentro del jugador. El jugador es un cuadrado al final
-	refondo0:
+	b.lt fondo			// Saltea el pintado de pixeles si esta
+fondo0:
 	sturh w11,[x10]	   	// Setear el color del pixel N para volverlo fondo
-	refondo:
+fondo:
 	add x10,x10,2	   	// Siguiente pixel
 	add x1,x1,1	   		// Aumentar el contador X
 	cmp x1,512
-	b.ne refondo1	 	// Si no terminó la fila, volver a comprobar
+	b.ne fondo1	 		// Si no terminó la fila, volver a comprobar
 	add x2,x2,1	   		// Aumentar el contador Y
 	cmp x2,512
-	b.ne refondo2	 	// Si no es la última fila, saltar
+	b.ne fondo2	 		// Si no es la última fila, saltar
 	bl doscolores
 	// ------------------
 				
@@ -429,5 +429,5 @@ izqcollision:
 	
 	b player    //vuelve a dibujar el jugador solamente
 		
-	infloop:
+infloop:
 	b infloop
