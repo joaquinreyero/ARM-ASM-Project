@@ -9,28 +9,32 @@ Linker script and memory map
 
 LOAD build/main.o
 
-.text           0x0000000000000000    0x107e8
+.text           0x0000000000000000    0x10738
  *(.text*)
- .text          0x0000000000000000    0x107e8 build/main.o
+ .text          0x0000000000000000    0x10738 build/main.o
                 0x00000000000100a0                inputRead
                 0x00000000000100a8                rectangle
-                0x0000000000010100                rainbowParty
-                0x00000000000101e0                app
+                0x0000000000010100                triangle
+                0x0000000000010164                gral
+                0x0000000000010188                collision
+                0x00000000000101b4                doscolores
+                0x0000000000010204                app
+                0x0000000000010690                evento
 
-.iplt           0x00000000000107e8        0x0
- .iplt          0x00000000000107e8        0x0 build/main.o
+.iplt           0x0000000000010738        0x0
+ .iplt          0x0000000000010738        0x0 build/main.o
 
-.rela.dyn       0x00000000000107e8        0x0
- .rela.iplt     0x00000000000107e8        0x0 build/main.o
+.rela.dyn       0x0000000000010738        0x0
+ .rela.iplt     0x0000000000010738        0x0 build/main.o
 
-.data           0x00000000000107e8        0x0
- .data          0x00000000000107e8        0x0 build/main.o
+.data           0x0000000000010738        0x0
+ .data          0x0000000000010738        0x0 build/main.o
 
-.igot.plt       0x00000000000107e8        0x0
- .igot.plt      0x00000000000107e8        0x0 build/main.o
+.igot.plt       0x0000000000010738        0x0
+ .igot.plt      0x0000000000010738        0x0 build/main.o
 
-.bss            0x00000000000107e8        0x0
+.bss            0x0000000000010738        0x0
  *(.bss*)
- .bss           0x00000000000107e8        0x0 build/main.o
+ .bss           0x0000000000010738        0x0 build/main.o
 OUTPUT(build/main.elf elf64-littleaarch64)
 LOAD linker stubs

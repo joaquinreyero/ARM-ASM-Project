@@ -16446,7 +16446,7 @@ Disassembly of section .text:
 
 00000000000100a0 <_app>:
    100a0:	94000093 	bl	102ec <_draw_bg>
-   100a4:	940000c9 	bl	103c8 <_draw_robot>
+   100a4:	94000100 	bl	104a4 <_draw_robot>
 
 00000000000100a8 <InfLoop>:
    100a8:	14000000 	b	100a8 <InfLoop>
@@ -16700,226 +16700,281 @@ Disassembly of section .text:
    10398:	aa1e03fd 	mov	x29, x30
    1039c:	d2800003 	mov	x3, #0x0                   	// #0
    103a0:	d2800004 	mov	x4, #0x0                   	// #0
-   103a4:	d2800505 	mov	x5, #0x28                  	// #40
-   103a8:	529950a1 	mov	w1, #0xca85                	// #51845
+   103a4:	d2800545 	mov	x5, #0x2a                  	// #42
+   103a8:	528c5901 	mov	w1, #0x62c8                	// #25288
    103ac:	97ffffa4 	bl	1023c <_draw_circle>
-   103b0:	d2803203 	mov	x3, #0x190                 	// #400
-   103b4:	d2803984 	mov	x4, #0x1cc                 	// #460
-   103b8:	d28003c5 	mov	x5, #0x1e                  	// #30
-   103bc:	529950a1 	mov	w1, #0xca85                	// #51845
+   103b0:	d2801903 	mov	x3, #0xc8                  	// #200
+   103b4:	d2800284 	mov	x4, #0x14                  	// #20
+   103b8:	d2800425 	mov	x5, #0x21                  	// #33
+   103bc:	528ab321 	mov	w1, #0x5599                	// #21913
    103c0:	97ffff9f 	bl	1023c <_draw_circle>
-   103c4:	d61f03a0 	br	x29
+   103c4:	d2803c03 	mov	x3, #0x1e0                 	// #480
+   103c8:	d2802084 	mov	x4, #0x104                 	// #260
+   103cc:	d2800445 	mov	x5, #0x22                  	// #34
+   103d0:	52875401 	mov	w1, #0x3aa0                	// #15008
+   103d4:	97ffff9a 	bl	1023c <_draw_circle>
+   103d8:	d28003c3 	mov	x3, #0x1e                  	// #30
+   103dc:	d2800c84 	mov	x4, #0x64                  	// #100
+   103e0:	d28003c5 	mov	x5, #0x1e                  	// #30
+   103e4:	52885501 	mov	w1, #0x42a8                	// #17064
+   103e8:	97ffff95 	bl	1023c <_draw_circle>
+   103ec:	d2802f83 	mov	x3, #0x17c                 	// #380
+   103f0:	d2800784 	mov	x4, #0x3c                  	// #60
+   103f4:	d2800645 	mov	x5, #0x32                  	// #50
+   103f8:	52897601 	mov	w1, #0x4bb0                	// #19376
+   103fc:	97ffff90 	bl	1023c <_draw_circle>
+   10400:	d2803c03 	mov	x3, #0x1e0                 	// #480
+   10404:	d2800d04 	mov	x4, #0x68                  	// #104
+   10408:	d2800505 	mov	x5, #0x28                  	// #40
+   1040c:	528a7701 	mov	w1, #0x53b8                	// #21432
+   10410:	97ffff8b 	bl	1023c <_draw_circle>
+   10414:	d2803203 	mov	x3, #0x190                 	// #400
+   10418:	d2803984 	mov	x4, #0x1cc                 	// #460
+   1041c:	d2800365 	mov	x5, #0x1b                  	// #27
+   10420:	528b7801 	mov	w1, #0x5bc0                	// #23488
+   10424:	97ffff86 	bl	1023c <_draw_circle>
+   10428:	d2800c83 	mov	x3, #0x64                  	// #100
+   1042c:	d2802804 	mov	x4, #0x140                 	// #320
+   10430:	d2800285 	mov	x5, #0x14                  	// #20
+   10434:	52875401 	mov	w1, #0x3aa0                	// #15008
+   10438:	97ffff81 	bl	1023c <_draw_circle>
+   1043c:	d2800283 	mov	x3, #0x14                  	// #20
+   10440:	d2802024 	mov	x4, #0x101                 	// #257
+   10444:	d2800325 	mov	x5, #0x19                  	// #25
+   10448:	528c5901 	mov	w1, #0x62c8                	// #25288
+   1044c:	97ffff7c 	bl	1023c <_draw_circle>
+   10450:	d28035c3 	mov	x3, #0x1ae                 	// #430
+   10454:	d2802f84 	mov	x4, #0x17c                 	// #380
+   10458:	d2800505 	mov	x5, #0x28                  	// #40
+   1045c:	528d5a01 	mov	w1, #0x6ad0                	// #27344
+   10460:	97ffff77 	bl	1023c <_draw_circle>
+   10464:	d2800c83 	mov	x3, #0x64                  	// #100
+   10468:	d2803984 	mov	x4, #0x1cc                 	// #460
+   1046c:	d2800785 	mov	x5, #0x3c                  	// #60
+   10470:	528f5be1 	mov	w1, #0x7adf                	// #31455
+   10474:	97ffff72 	bl	1023c <_draw_circle>
+   10478:	d2800503 	mov	x3, #0x28                  	// #40
+   1047c:	d2803484 	mov	x4, #0x1a4                 	// #420
+   10480:	d2800625 	mov	x5, #0x31                  	// #49
+   10484:	52907ce1 	mov	w1, #0x83e7                	// #33767
+   10488:	97ffff6d 	bl	1023c <_draw_circle>
+   1048c:	d2802003 	mov	x3, #0x100                 	// #256
+   10490:	d2803704 	mov	x4, #0x1b8                 	// #440
+   10494:	d2800365 	mov	x5, #0x1b                  	// #27
+   10498:	52917de1 	mov	w1, #0x8bef                	// #35823
+   1049c:	97ffff68 	bl	1023c <_draw_circle>
+   104a0:	d61f03a0 	br	x29
 
-00000000000103c8 <_draw_robot>:
-   103c8:	aa1e03fd 	mov	x29, x30
-   103cc:	94000003 	bl	103d8 <draw_head>
-   103d0:	9400006d 	bl	10584 <draw_body>
-   103d4:	d61f03a0 	br	x29
+00000000000104a4 <_draw_robot>:
+   104a4:	aa1e03fd 	mov	x29, x30
+   104a8:	94000003 	bl	104b4 <draw_head>
+   104ac:	9400006d 	bl	10660 <draw_body>
+   104b0:	d61f03a0 	br	x29
 
-00000000000103d8 <draw_head>:
-   103d8:	aa1e03fc 	mov	x28, x30
-   103dc:	d2802303 	mov	x3, #0x118                 	// #280
-   103e0:	d28022a4 	mov	x4, #0x115                 	// #277
-   103e4:	d28024a5 	mov	x5, #0x125                 	// #293
-   103e8:	d28016c6 	mov	x6, #0xb6                  	// #182
-   103ec:	52852ca1 	mov	w1, #0x2965                	// #10597
-   103f0:	97ffff59 	bl	10154 <_draw_rhomboid_b>
-   103f4:	d2802323 	mov	x3, #0x119                 	// #281
-   103f8:	d2802264 	mov	x4, #0x113                 	// #275
-   103fc:	d2802485 	mov	x5, #0x124                 	// #292
-   10400:	d28016e6 	mov	x6, #0xb7                  	// #183
-   10404:	529391c1 	mov	w1, #0x9c8e                	// #40078
-   10408:	97ffff53 	bl	10154 <_draw_rhomboid_b>
-   1040c:	d2801f43 	mov	x3, #0xfa                  	// #250
-   10410:	d28022a4 	mov	x4, #0x115                 	// #277
-   10414:	d28020e5 	mov	x5, #0x107                 	// #263
-   10418:	d2801966 	mov	x6, #0xcb                  	// #203
-   1041c:	52852ca1 	mov	w1, #0x2965                	// #10597
-   10420:	97ffff4d 	bl	10154 <_draw_rhomboid_b>
-   10424:	d2801f63 	mov	x3, #0xfb                  	// #251
-   10428:	d2802264 	mov	x4, #0x113                 	// #275
-   1042c:	d28020c5 	mov	x5, #0x106                 	// #262
-   10430:	d2801986 	mov	x6, #0xcc                  	// #204
-   10434:	529aadc1 	mov	w1, #0xd56e                	// #54638
-   10438:	97ffff47 	bl	10154 <_draw_rhomboid_b>
-   1043c:	d2801f83 	mov	x3, #0xfc                  	// #252
-   10440:	d2802224 	mov	x4, #0x111                 	// #273
-   10444:	d28020a5 	mov	x5, #0x105                 	// #261
-   10448:	d28019a6 	mov	x6, #0xcd                  	// #205
-   1044c:	529391c1 	mov	w1, #0x9c8e                	// #40078
-   10450:	97ffff41 	bl	10154 <_draw_rhomboid_b>
-   10454:	d28019a3 	mov	x3, #0xcd                  	// #205
-   10458:	d2801224 	mov	x4, #0x91                  	// #145
-   1045c:	d2802625 	mov	x5, #0x131                 	// #305
-   10460:	d28019e6 	mov	x6, #0xcf                  	// #207
-   10464:	52852ca1 	mov	w1, #0x2965                	// #10597
-   10468:	97ffff11 	bl	100ac <_draw_rectangle>
-   1046c:	d2802623 	mov	x3, #0x131                 	// #305
-   10470:	d28019c4 	mov	x4, #0xce                  	// #206
-   10474:	d28027c5 	mov	x5, #0x13e                 	// #318
-   10478:	d2801066 	mov	x6, #0x83                  	// #131
-   1047c:	97ffff36 	bl	10154 <_draw_rhomboid_b>
-   10480:	d2802643 	mov	x3, #0x132                 	// #306
-   10484:	d2801984 	mov	x4, #0xcc                  	// #204
-   10488:	d28027a5 	mov	x5, #0x13d                 	// #317
-   1048c:	d2801086 	mov	x6, #0x84                  	// #132
-   10490:	529391c1 	mov	w1, #0x9c8e                	// #40078
-   10494:	97ffff30 	bl	10154 <_draw_rhomboid_b>
-   10498:	d28019c3 	mov	x3, #0xce                  	// #206
-   1049c:	d2801244 	mov	x4, #0x92                  	// #146
-   104a0:	d2802605 	mov	x5, #0x130                 	// #304
-   104a4:	d28019c6 	mov	x6, #0xce                  	// #206
-   104a8:	529aadc1 	mov	w1, #0xd56e                	// #54638
-   104ac:	97ffff00 	bl	100ac <_draw_rectangle>
-   104b0:	d2801983 	mov	x3, #0xcc                  	// #204
-   104b4:	d2801224 	mov	x4, #0x91                  	// #145
-   104b8:	d28027c5 	mov	x5, #0x13e                 	// #318
-   104bc:	d2801066 	mov	x6, #0x83                  	// #131
-   104c0:	52852ca1 	mov	w1, #0x2965                	// #10597
-   104c4:	97ffff0e 	bl	100fc <_draw_rhomboid_A>
-   104c8:	d28019c3 	mov	x3, #0xce                  	// #206
-   104cc:	d2801204 	mov	x4, #0x90                  	// #144
-   104d0:	d2802785 	mov	x5, #0x13c                 	// #316
-   104d4:	d2801086 	mov	x6, #0x84                  	// #132
-   104d8:	529391c1 	mov	w1, #0x9c8e                	// #40078
-   104dc:	97ffff08 	bl	100fc <_draw_rhomboid_A>
-   104e0:	d2802303 	mov	x3, #0x118                 	// #280
-   104e4:	d2801544 	mov	x4, #0xaa                  	// #170
-   104e8:	d2800185 	mov	x5, #0xc                   	// #12
-   104ec:	529fffe1 	mov	w1, #0xffff                	// #65535
-   104f0:	97ffff53 	bl	1023c <_draw_circle>
-   104f4:	d28022a3 	mov	x3, #0x115                 	// #277
-   104f8:	d2801544 	mov	x4, #0xaa                  	// #170
-   104fc:	d28000a5 	mov	x5, #0x5                   	// #5
-   10500:	52800001 	mov	w1, #0x0                   	// #0
-   10504:	97ffff4e 	bl	1023c <_draw_circle>
-   10508:	d2802283 	mov	x3, #0x114                 	// #276
-   1050c:	d2801504 	mov	x4, #0xa8                  	// #168
-   10510:	d2800025 	mov	x5, #0x1                   	// #1
-   10514:	529fffe1 	mov	w1, #0xffff                	// #65535
-   10518:	97ffff49 	bl	1023c <_draw_circle>
-   1051c:	d2801cc3 	mov	x3, #0xe6                  	// #230
-   10520:	d2801544 	mov	x4, #0xaa                  	// #170
-   10524:	d2800185 	mov	x5, #0xc                   	// #12
-   10528:	529fffe1 	mov	w1, #0xffff                	// #65535
-   1052c:	97ffff44 	bl	1023c <_draw_circle>
-   10530:	d2801c63 	mov	x3, #0xe3                  	// #227
-   10534:	d2801544 	mov	x4, #0xaa                  	// #170
-   10538:	d28000a5 	mov	x5, #0x5                   	// #5
-   1053c:	52800001 	mov	w1, #0x0                   	// #0
-   10540:	97ffff3f 	bl	1023c <_draw_circle>
-   10544:	d2801c43 	mov	x3, #0xe2                  	// #226
-   10548:	d2801504 	mov	x4, #0xa8                  	// #168
-   1054c:	d2800025 	mov	x5, #0x1                   	// #1
-   10550:	529fffe1 	mov	w1, #0xffff                	// #65535
-   10554:	97ffff3a 	bl	1023c <_draw_circle>
-   10558:	d2801fe3 	mov	x3, #0xff                  	// #255
-   1055c:	d2801724 	mov	x4, #0xb9                  	// #185
-   10560:	d28001e5 	mov	x5, #0xf                   	// #15
-   10564:	52800001 	mov	w1, #0x0                   	// #0
-   10568:	97ffff5b 	bl	102d4 <_draw_semi_circle>
-   1056c:	d2802043 	mov	x3, #0x102                 	// #258
-   10570:	d2801724 	mov	x4, #0xb9                  	// #185
-   10574:	d28000e5 	mov	x5, #0x7                   	// #7
-   10578:	529950a1 	mov	w1, #0xca85                	// #51845
-   1057c:	97ffff56 	bl	102d4 <_draw_semi_circle>
-   10580:	d61f0380 	br	x28
+00000000000104b4 <draw_head>:
+   104b4:	aa1e03fc 	mov	x28, x30
+   104b8:	d2802303 	mov	x3, #0x118                 	// #280
+   104bc:	d28022a4 	mov	x4, #0x115                 	// #277
+   104c0:	d28024a5 	mov	x5, #0x125                 	// #293
+   104c4:	d28016c6 	mov	x6, #0xb6                  	// #182
+   104c8:	52852ca1 	mov	w1, #0x2965                	// #10597
+   104cc:	97ffff22 	bl	10154 <_draw_rhomboid_b>
+   104d0:	d2802323 	mov	x3, #0x119                 	// #281
+   104d4:	d2802264 	mov	x4, #0x113                 	// #275
+   104d8:	d2802485 	mov	x5, #0x124                 	// #292
+   104dc:	d28016e6 	mov	x6, #0xb7                  	// #183
+   104e0:	529391c1 	mov	w1, #0x9c8e                	// #40078
+   104e4:	97ffff1c 	bl	10154 <_draw_rhomboid_b>
+   104e8:	d2801f43 	mov	x3, #0xfa                  	// #250
+   104ec:	d28022a4 	mov	x4, #0x115                 	// #277
+   104f0:	d28020e5 	mov	x5, #0x107                 	// #263
+   104f4:	d2801966 	mov	x6, #0xcb                  	// #203
+   104f8:	52852ca1 	mov	w1, #0x2965                	// #10597
+   104fc:	97ffff16 	bl	10154 <_draw_rhomboid_b>
+   10500:	d2801f63 	mov	x3, #0xfb                  	// #251
+   10504:	d2802264 	mov	x4, #0x113                 	// #275
+   10508:	d28020c5 	mov	x5, #0x106                 	// #262
+   1050c:	d2801986 	mov	x6, #0xcc                  	// #204
+   10510:	529aadc1 	mov	w1, #0xd56e                	// #54638
+   10514:	97ffff10 	bl	10154 <_draw_rhomboid_b>
+   10518:	d2801f83 	mov	x3, #0xfc                  	// #252
+   1051c:	d2802224 	mov	x4, #0x111                 	// #273
+   10520:	d28020a5 	mov	x5, #0x105                 	// #261
+   10524:	d28019a6 	mov	x6, #0xcd                  	// #205
+   10528:	529391c1 	mov	w1, #0x9c8e                	// #40078
+   1052c:	97ffff0a 	bl	10154 <_draw_rhomboid_b>
+   10530:	d28019a3 	mov	x3, #0xcd                  	// #205
+   10534:	d2801224 	mov	x4, #0x91                  	// #145
+   10538:	d2802625 	mov	x5, #0x131                 	// #305
+   1053c:	d28019e6 	mov	x6, #0xcf                  	// #207
+   10540:	52852ca1 	mov	w1, #0x2965                	// #10597
+   10544:	97fffeda 	bl	100ac <_draw_rectangle>
+   10548:	d2802623 	mov	x3, #0x131                 	// #305
+   1054c:	d28019c4 	mov	x4, #0xce                  	// #206
+   10550:	d28027c5 	mov	x5, #0x13e                 	// #318
+   10554:	d2801066 	mov	x6, #0x83                  	// #131
+   10558:	97fffeff 	bl	10154 <_draw_rhomboid_b>
+   1055c:	d2802643 	mov	x3, #0x132                 	// #306
+   10560:	d2801984 	mov	x4, #0xcc                  	// #204
+   10564:	d28027a5 	mov	x5, #0x13d                 	// #317
+   10568:	d2801086 	mov	x6, #0x84                  	// #132
+   1056c:	529391c1 	mov	w1, #0x9c8e                	// #40078
+   10570:	97fffef9 	bl	10154 <_draw_rhomboid_b>
+   10574:	d28019c3 	mov	x3, #0xce                  	// #206
+   10578:	d2801244 	mov	x4, #0x92                  	// #146
+   1057c:	d2802605 	mov	x5, #0x130                 	// #304
+   10580:	d28019c6 	mov	x6, #0xce                  	// #206
+   10584:	529aadc1 	mov	w1, #0xd56e                	// #54638
+   10588:	97fffec9 	bl	100ac <_draw_rectangle>
+   1058c:	d2801983 	mov	x3, #0xcc                  	// #204
+   10590:	d2801224 	mov	x4, #0x91                  	// #145
+   10594:	d28027c5 	mov	x5, #0x13e                 	// #318
+   10598:	d2801066 	mov	x6, #0x83                  	// #131
+   1059c:	52852ca1 	mov	w1, #0x2965                	// #10597
+   105a0:	97fffed7 	bl	100fc <_draw_rhomboid_A>
+   105a4:	d28019c3 	mov	x3, #0xce                  	// #206
+   105a8:	d2801204 	mov	x4, #0x90                  	// #144
+   105ac:	d2802785 	mov	x5, #0x13c                 	// #316
+   105b0:	d2801086 	mov	x6, #0x84                  	// #132
+   105b4:	529391c1 	mov	w1, #0x9c8e                	// #40078
+   105b8:	97fffed1 	bl	100fc <_draw_rhomboid_A>
+   105bc:	d2802303 	mov	x3, #0x118                 	// #280
+   105c0:	d2801544 	mov	x4, #0xaa                  	// #170
+   105c4:	d2800185 	mov	x5, #0xc                   	// #12
+   105c8:	529fffe1 	mov	w1, #0xffff                	// #65535
+   105cc:	97ffff1c 	bl	1023c <_draw_circle>
+   105d0:	d28022a3 	mov	x3, #0x115                 	// #277
+   105d4:	d2801544 	mov	x4, #0xaa                  	// #170
+   105d8:	d28000a5 	mov	x5, #0x5                   	// #5
+   105dc:	52800001 	mov	w1, #0x0                   	// #0
+   105e0:	97ffff17 	bl	1023c <_draw_circle>
+   105e4:	d2802283 	mov	x3, #0x114                 	// #276
+   105e8:	d2801504 	mov	x4, #0xa8                  	// #168
+   105ec:	d2800025 	mov	x5, #0x1                   	// #1
+   105f0:	529fffe1 	mov	w1, #0xffff                	// #65535
+   105f4:	97ffff12 	bl	1023c <_draw_circle>
+   105f8:	d2801cc3 	mov	x3, #0xe6                  	// #230
+   105fc:	d2801544 	mov	x4, #0xaa                  	// #170
+   10600:	d2800185 	mov	x5, #0xc                   	// #12
+   10604:	529fffe1 	mov	w1, #0xffff                	// #65535
+   10608:	97ffff0d 	bl	1023c <_draw_circle>
+   1060c:	d2801c63 	mov	x3, #0xe3                  	// #227
+   10610:	d2801544 	mov	x4, #0xaa                  	// #170
+   10614:	d28000a5 	mov	x5, #0x5                   	// #5
+   10618:	52800001 	mov	w1, #0x0                   	// #0
+   1061c:	97ffff08 	bl	1023c <_draw_circle>
+   10620:	d2801c43 	mov	x3, #0xe2                  	// #226
+   10624:	d2801504 	mov	x4, #0xa8                  	// #168
+   10628:	d2800025 	mov	x5, #0x1                   	// #1
+   1062c:	529fffe1 	mov	w1, #0xffff                	// #65535
+   10630:	97ffff03 	bl	1023c <_draw_circle>
+   10634:	d2801fe3 	mov	x3, #0xff                  	// #255
+   10638:	d2801724 	mov	x4, #0xb9                  	// #185
+   1063c:	d28001e5 	mov	x5, #0xf                   	// #15
+   10640:	52800001 	mov	w1, #0x0                   	// #0
+   10644:	97ffff24 	bl	102d4 <_draw_semi_circle>
+   10648:	d2802043 	mov	x3, #0x102                 	// #258
+   1064c:	d2801724 	mov	x4, #0xb9                  	// #185
+   10650:	d28000e5 	mov	x5, #0x7                   	// #7
+   10654:	529950a1 	mov	w1, #0xca85                	// #51845
+   10658:	97ffff1f 	bl	102d4 <_draw_semi_circle>
+   1065c:	d61f0380 	br	x28
 
-0000000000010584 <draw_body>:
-   10584:	aa1e03fc 	mov	x28, x30
-   10588:	d2801ac3 	mov	x3, #0xd6                  	// #214
-   1058c:	d2801b24 	mov	x4, #0xd9                  	// #217
-   10590:	d2801d85 	mov	x5, #0xec                  	// #236
-   10594:	d2801aa6 	mov	x6, #0xd5                  	// #213
-   10598:	52852ca1 	mov	w1, #0x2965                	// #10597
-   1059c:	97fffed8 	bl	100fc <_draw_rhomboid_A>
-   105a0:	d2801b03 	mov	x3, #0xd8                  	// #216
-   105a4:	d2801b04 	mov	x4, #0xd8                  	// #216
-   105a8:	d2801d45 	mov	x5, #0xea                  	// #234
-   105ac:	d2801ac6 	mov	x6, #0xd6                  	// #214
-   105b0:	529391c1 	mov	w1, #0x9c8e                	// #40078
-   105b4:	97fffed2 	bl	100fc <_draw_rhomboid_A>
-   105b8:	d2801cc3 	mov	x3, #0xe6                  	// #230
-   105bc:	d28019e4 	mov	x4, #0xcf                  	// #207
-   105c0:	d2802305 	mov	x5, #0x118                 	// #280
-   105c4:	d2802046 	mov	x6, #0x102                 	// #258
-   105c8:	52852ca1 	mov	w1, #0x2965                	// #10597
-   105cc:	97fffeb8 	bl	100ac <_draw_rectangle>
-   105d0:	d2801ce3 	mov	x3, #0xe7                  	// #231
-   105d4:	d2801a04 	mov	x4, #0xd0                  	// #208
-   105d8:	d28022e5 	mov	x5, #0x117                 	// #279
-   105dc:	d2802026 	mov	x6, #0x101                 	// #257
-   105e0:	529aadc1 	mov	w1, #0xd56e                	// #54638
-   105e4:	97fffeb2 	bl	100ac <_draw_rectangle>
-   105e8:	d2801ac3 	mov	x3, #0xd6                  	// #214
-   105ec:	d2801b24 	mov	x4, #0xd9                  	// #217
-   105f0:	d2801cc5 	mov	x5, #0xe6                  	// #230
-   105f4:	d2801ec6 	mov	x6, #0xf6                  	// #246
-   105f8:	52852ca1 	mov	w1, #0x2965                	// #10597
-   105fc:	97fffeac 	bl	100ac <_draw_rectangle>
-   10600:	d2801ae3 	mov	x3, #0xd7                  	// #215
-   10604:	d2801b44 	mov	x4, #0xda                  	// #218
-   10608:	d2801ca5 	mov	x5, #0xe5                  	// #229
-   1060c:	d2801ea6 	mov	x6, #0xf5                  	// #245
-   10610:	529aadc1 	mov	w1, #0xd56e                	// #54638
-   10614:	97fffea6 	bl	100ac <_draw_rectangle>
-   10618:	d2802303 	mov	x3, #0x118                 	// #280
-   1061c:	d2801b24 	mov	x4, #0xd9                  	// #217
-   10620:	d2802505 	mov	x5, #0x128                 	// #296
-   10624:	d2801ec6 	mov	x6, #0xf6                  	// #246
-   10628:	52852ca1 	mov	w1, #0x2965                	// #10597
-   1062c:	97fffea0 	bl	100ac <_draw_rectangle>
-   10630:	d2802503 	mov	x3, #0x128                 	// #296
-   10634:	d2801e84 	mov	x4, #0xf4                  	// #244
-   10638:	d28025c5 	mov	x5, #0x12e                 	// #302
-   1063c:	d2801a86 	mov	x6, #0xd4                  	// #212
-   10640:	97fffec5 	bl	10154 <_draw_rhomboid_b>
-   10644:	d2802523 	mov	x3, #0x129                 	// #297
-   10648:	d2801e44 	mov	x4, #0xf2                  	// #242
-   1064c:	d28025a5 	mov	x5, #0x12d                 	// #301
-   10650:	d2801aa6 	mov	x6, #0xd5                  	// #213
-   10654:	529391c1 	mov	w1, #0x9c8e                	// #40078
-   10658:	97fffebf 	bl	10154 <_draw_rhomboid_b>
-   1065c:	d2802323 	mov	x3, #0x119                 	// #281
-   10660:	d2801b44 	mov	x4, #0xda                  	// #218
-   10664:	d28024e5 	mov	x5, #0x127                 	// #295
-   10668:	d2801ea6 	mov	x6, #0xf5                  	// #245
-   1066c:	529aadc1 	mov	w1, #0xd56e                	// #54638
-   10670:	97fffe8f 	bl	100ac <_draw_rectangle>
-   10674:	d2802303 	mov	x3, #0x118                 	// #280
-   10678:	d2801b24 	mov	x4, #0xd9                  	// #217
-   1067c:	d28025c5 	mov	x5, #0x12e                 	// #302
-   10680:	d2801a86 	mov	x6, #0xd4                  	// #212
-   10684:	52852ca1 	mov	w1, #0x2965                	// #10597
-   10688:	97fffe9d 	bl	100fc <_draw_rhomboid_A>
-   1068c:	d2802343 	mov	x3, #0x11a                 	// #282
-   10690:	d2801b04 	mov	x4, #0xd8                  	// #216
-   10694:	d2802585 	mov	x5, #0x12c                 	// #300
-   10698:	d2801aa6 	mov	x6, #0xd5                  	// #213
-   1069c:	529391c1 	mov	w1, #0x9c8e                	// #40078
-   106a0:	97fffe97 	bl	100fc <_draw_rhomboid_A>
-   106a4:	d2801cc3 	mov	x3, #0xe6                  	// #230
-   106a8:	d2802044 	mov	x4, #0x102                 	// #258
-   106ac:	d2801f45 	mov	x5, #0xfa                  	// #250
-   106b0:	d28022c6 	mov	x6, #0x116                 	// #278
-   106b4:	52852ca1 	mov	w1, #0x2965                	// #10597
-   106b8:	97fffe7d 	bl	100ac <_draw_rectangle>
-   106bc:	d2801ce3 	mov	x3, #0xe7                  	// #231
-   106c0:	d2802064 	mov	x4, #0x103                 	// #259
-   106c4:	d2801f25 	mov	x5, #0xf9                  	// #249
-   106c8:	d28022a6 	mov	x6, #0x115                 	// #277
-   106cc:	529aadc1 	mov	w1, #0xd56e                	// #54638
-   106d0:	97fffe77 	bl	100ac <_draw_rectangle>
-   106d4:	d2802083 	mov	x3, #0x104                 	// #260
-   106d8:	d2802044 	mov	x4, #0x102                 	// #258
-   106dc:	d2802305 	mov	x5, #0x118                 	// #280
-   106e0:	d28022c6 	mov	x6, #0x116                 	// #278
-   106e4:	52852ca1 	mov	w1, #0x2965                	// #10597
-   106e8:	97fffe71 	bl	100ac <_draw_rectangle>
-   106ec:	d28020a3 	mov	x3, #0x105                 	// #261
-   106f0:	d2802064 	mov	x4, #0x103                 	// #259
-   106f4:	d28022e5 	mov	x5, #0x117                 	// #279
-   106f8:	d28022a6 	mov	x6, #0x115                 	// #277
-   106fc:	529aadc1 	mov	w1, #0xd56e                	// #54638
-   10700:	97fffe6b 	bl	100ac <_draw_rectangle>
-   10704:	d61f0380 	br	x28
+0000000000010660 <draw_body>:
+   10660:	aa1e03fc 	mov	x28, x30
+   10664:	d2801ac3 	mov	x3, #0xd6                  	// #214
+   10668:	d2801b24 	mov	x4, #0xd9                  	// #217
+   1066c:	d2801d85 	mov	x5, #0xec                  	// #236
+   10670:	d2801aa6 	mov	x6, #0xd5                  	// #213
+   10674:	52852ca1 	mov	w1, #0x2965                	// #10597
+   10678:	97fffea1 	bl	100fc <_draw_rhomboid_A>
+   1067c:	d2801b03 	mov	x3, #0xd8                  	// #216
+   10680:	d2801b04 	mov	x4, #0xd8                  	// #216
+   10684:	d2801d45 	mov	x5, #0xea                  	// #234
+   10688:	d2801ac6 	mov	x6, #0xd6                  	// #214
+   1068c:	529391c1 	mov	w1, #0x9c8e                	// #40078
+   10690:	97fffe9b 	bl	100fc <_draw_rhomboid_A>
+   10694:	d2801cc3 	mov	x3, #0xe6                  	// #230
+   10698:	d28019e4 	mov	x4, #0xcf                  	// #207
+   1069c:	d2802305 	mov	x5, #0x118                 	// #280
+   106a0:	d2802046 	mov	x6, #0x102                 	// #258
+   106a4:	52852ca1 	mov	w1, #0x2965                	// #10597
+   106a8:	97fffe81 	bl	100ac <_draw_rectangle>
+   106ac:	d2801ce3 	mov	x3, #0xe7                  	// #231
+   106b0:	d2801a04 	mov	x4, #0xd0                  	// #208
+   106b4:	d28022e5 	mov	x5, #0x117                 	// #279
+   106b8:	d2802026 	mov	x6, #0x101                 	// #257
+   106bc:	529aadc1 	mov	w1, #0xd56e                	// #54638
+   106c0:	97fffe7b 	bl	100ac <_draw_rectangle>
+   106c4:	d2801ac3 	mov	x3, #0xd6                  	// #214
+   106c8:	d2801b24 	mov	x4, #0xd9                  	// #217
+   106cc:	d2801cc5 	mov	x5, #0xe6                  	// #230
+   106d0:	d2801ec6 	mov	x6, #0xf6                  	// #246
+   106d4:	52852ca1 	mov	w1, #0x2965                	// #10597
+   106d8:	97fffe75 	bl	100ac <_draw_rectangle>
+   106dc:	d2801ae3 	mov	x3, #0xd7                  	// #215
+   106e0:	d2801b44 	mov	x4, #0xda                  	// #218
+   106e4:	d2801ca5 	mov	x5, #0xe5                  	// #229
+   106e8:	d2801ea6 	mov	x6, #0xf5                  	// #245
+   106ec:	529aadc1 	mov	w1, #0xd56e                	// #54638
+   106f0:	97fffe6f 	bl	100ac <_draw_rectangle>
+   106f4:	d2802303 	mov	x3, #0x118                 	// #280
+   106f8:	d2801b24 	mov	x4, #0xd9                  	// #217
+   106fc:	d2802505 	mov	x5, #0x128                 	// #296
+   10700:	d2801ec6 	mov	x6, #0xf6                  	// #246
+   10704:	52852ca1 	mov	w1, #0x2965                	// #10597
+   10708:	97fffe69 	bl	100ac <_draw_rectangle>
+   1070c:	d2802503 	mov	x3, #0x128                 	// #296
+   10710:	d2801e84 	mov	x4, #0xf4                  	// #244
+   10714:	d28025c5 	mov	x5, #0x12e                 	// #302
+   10718:	d2801a86 	mov	x6, #0xd4                  	// #212
+   1071c:	97fffe8e 	bl	10154 <_draw_rhomboid_b>
+   10720:	d2802523 	mov	x3, #0x129                 	// #297
+   10724:	d2801e44 	mov	x4, #0xf2                  	// #242
+   10728:	d28025a5 	mov	x5, #0x12d                 	// #301
+   1072c:	d2801aa6 	mov	x6, #0xd5                  	// #213
+   10730:	529391c1 	mov	w1, #0x9c8e                	// #40078
+   10734:	97fffe88 	bl	10154 <_draw_rhomboid_b>
+   10738:	d2802323 	mov	x3, #0x119                 	// #281
+   1073c:	d2801b44 	mov	x4, #0xda                  	// #218
+   10740:	d28024e5 	mov	x5, #0x127                 	// #295
+   10744:	d2801ea6 	mov	x6, #0xf5                  	// #245
+   10748:	529aadc1 	mov	w1, #0xd56e                	// #54638
+   1074c:	97fffe58 	bl	100ac <_draw_rectangle>
+   10750:	d2802303 	mov	x3, #0x118                 	// #280
+   10754:	d2801b24 	mov	x4, #0xd9                  	// #217
+   10758:	d28025c5 	mov	x5, #0x12e                 	// #302
+   1075c:	d2801a86 	mov	x6, #0xd4                  	// #212
+   10760:	52852ca1 	mov	w1, #0x2965                	// #10597
+   10764:	97fffe66 	bl	100fc <_draw_rhomboid_A>
+   10768:	d2802343 	mov	x3, #0x11a                 	// #282
+   1076c:	d2801b04 	mov	x4, #0xd8                  	// #216
+   10770:	d2802585 	mov	x5, #0x12c                 	// #300
+   10774:	d2801aa6 	mov	x6, #0xd5                  	// #213
+   10778:	529391c1 	mov	w1, #0x9c8e                	// #40078
+   1077c:	97fffe60 	bl	100fc <_draw_rhomboid_A>
+   10780:	d2801cc3 	mov	x3, #0xe6                  	// #230
+   10784:	d2802044 	mov	x4, #0x102                 	// #258
+   10788:	d2801f45 	mov	x5, #0xfa                  	// #250
+   1078c:	d28022c6 	mov	x6, #0x116                 	// #278
+   10790:	52852ca1 	mov	w1, #0x2965                	// #10597
+   10794:	97fffe46 	bl	100ac <_draw_rectangle>
+   10798:	d2801ce3 	mov	x3, #0xe7                  	// #231
+   1079c:	d2802064 	mov	x4, #0x103                 	// #259
+   107a0:	d2801f25 	mov	x5, #0xf9                  	// #249
+   107a4:	d28022a6 	mov	x6, #0x115                 	// #277
+   107a8:	529aadc1 	mov	w1, #0xd56e                	// #54638
+   107ac:	97fffe40 	bl	100ac <_draw_rectangle>
+   107b0:	d2802083 	mov	x3, #0x104                 	// #260
+   107b4:	d2802044 	mov	x4, #0x102                 	// #258
+   107b8:	d2802305 	mov	x5, #0x118                 	// #280
+   107bc:	d28022c6 	mov	x6, #0x116                 	// #278
+   107c0:	52852ca1 	mov	w1, #0x2965                	// #10597
+   107c4:	97fffe3a 	bl	100ac <_draw_rectangle>
+   107c8:	d28020a3 	mov	x3, #0x105                 	// #261
+   107cc:	d2802064 	mov	x4, #0x103                 	// #259
+   107d0:	d28022e5 	mov	x5, #0x117                 	// #279
+   107d4:	d28022a6 	mov	x6, #0x115                 	// #277
+   107d8:	529aadc1 	mov	w1, #0xd56e                	// #54638
+   107dc:	97fffe34 	bl	100ac <_draw_rectangle>
+   107e0:	d61f0380 	br	x28

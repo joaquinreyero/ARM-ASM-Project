@@ -54,19 +54,84 @@ draw_bubbles:
 
     // - Bubbles - //
 
-    // Bubble 1
     mov x3, 0               // Xcenter
     mov x4, 0               // Ycenter
-    mov x5, 40              // Radius
-    mov w1, COLOR_RED       // Color
+    mov x5, 42              // Radius
+    mov w1, 0x62C8       // Color
     bl _draw_circle
 
-    // Bubble 2
+    mov x3, 200               // Xcenter
+    mov x4, 20               // Ycenter
+    mov x5, 33              // Radius
+    mov w1, 0x5599       // Color
+    bl _draw_circle
+
+    mov x3, 480               // Xcenter
+    mov x4, 260               // Ycenter
+    mov x5, 34              // Radius
+    mov w1, 0x3AA0       // Color
+    bl _draw_circle
+
+    mov x3, 30               // Xcenter
+    mov x4, 100               // Ycenter
+    mov x5, 30              // Radius
+    mov w1, 0x42A8       // Color
+    bl _draw_circle
+
+    mov x3, 380               // Xcenter
+    mov x4, 60               // Ycenter
+    mov x5, 50              // Radius
+    mov w1, 0x4BB0       // Color
+    bl _draw_circle
+
+    mov x3, 480               // Xcenter
+    mov x4, 104               // Ycenter
+    mov x5, 40              // Radius
+    mov w1, 0x53B8       // Color
+    bl _draw_circle
+
     mov x3, 400             // Xcenter
     mov x4, 460             // Ycenter
-    mov x5, 30              // Radius
-    mov w1, COLOR_RED       // Color
-    bl _draw_circle     
+    mov x5, 27              // Radius
+    mov w1, 0x5BC0       // Color
+    bl _draw_circle  
+
+    mov x3, 100             // Xcenter
+    mov x4, 320             // Ycenter
+    mov x5, 20              // Radius
+    mov w1, 0x3AA0       // Color
+    bl _draw_circle  
+
+    mov x3, 20             // Xcenter
+    mov x4, 257             // Ycenter
+    mov x5, 25              // Radius
+    mov w1, 0x62C8       // Color
+    bl _draw_circle  
+
+    mov x3, 430             // Xcenter
+    mov x4, 380             // Ycenter
+    mov x5, 40              // Radius
+    mov w1, 0x6AD0       // Color
+    bl _draw_circle    
+
+    mov x3, 100             // Xcenter
+    mov x4, 460             // Ycenter
+    mov x5, 60              // Radius
+    mov w1, 0x7ADF       // Color
+    bl _draw_circle  
+
+    mov x3, 40             // Xcenter
+    mov x4, 420             // Ycenter
+    mov x5, 49              // Radius
+    mov w1, 0x83E7       // Color
+    bl _draw_circle  
+
+    
+    mov x3, 256             // Xcenter
+    mov x4, 440             // Ycenter
+    mov x5, 27              // Radius
+    mov w1, 0x8BEF       // Color
+    bl _draw_circle      
 
     // ... //
 

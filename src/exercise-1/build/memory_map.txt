@@ -9,9 +9,9 @@ Linker script and memory map
 
 LOAD build/main.o
 
-.text           0x0000000000000000    0x10708
+.text           0x0000000000000000    0x107e4
  *(.text*)
- .text          0x0000000000000000    0x10708 build/main.o
+ .text          0x0000000000000000    0x107e4 build/main.o
                 0x00000000000100a0                _app
                 0x00000000000100ac                _draw_rectangle
                 0x00000000000100fc                _draw_rhomboid_A
@@ -21,22 +21,22 @@ LOAD build/main.o
                 0x000000000001023c                _draw_circle
                 0x00000000000102d4                _draw_semi_circle
                 0x00000000000102ec                _draw_bg
-                0x00000000000103c8                _draw_robot
+                0x00000000000104a4                _draw_robot
 
-.iplt           0x0000000000010708        0x0
- .iplt          0x0000000000010708        0x0 build/main.o
+.iplt           0x00000000000107e4        0x0
+ .iplt          0x00000000000107e4        0x0 build/main.o
 
-.rela.dyn       0x0000000000010708        0x0
- .rela.iplt     0x0000000000010708        0x0 build/main.o
+.rela.dyn       0x00000000000107e8        0x0
+ .rela.iplt     0x00000000000107e8        0x0 build/main.o
 
-.data           0x0000000000010708        0x0
- .data          0x0000000000010708        0x0 build/main.o
+.data           0x00000000000107e4        0x0
+ .data          0x00000000000107e4        0x0 build/main.o
 
-.igot.plt       0x0000000000010708        0x0
- .igot.plt      0x0000000000010708        0x0 build/main.o
+.igot.plt       0x00000000000107e8        0x0
+ .igot.plt      0x00000000000107e8        0x0 build/main.o
 
-.bss            0x0000000000010708        0x0
+.bss            0x00000000000107e4        0x0
  *(.bss*)
- .bss           0x0000000000010708        0x0 build/main.o
+ .bss           0x00000000000107e4        0x0 build/main.o
 OUTPUT(build/main.elf elf64-littleaarch64)
 LOAD linker stubs
